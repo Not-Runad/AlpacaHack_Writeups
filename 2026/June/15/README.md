@@ -27,4 +27,4 @@ $ curl --http2-prior-knowledge http://12.345.678.901:12345/
 Flag: Alpaca{REDACTED}
 ```
 ## Reference(s)
-[h2c (HTTP/2 平文) で通信してみた 【その1 〜 バックエンド(Go/Node.js/Python)サービス編】 #http2 - Qiita](https://qiita.com/ssc-ksaitou/items/a1afcd4433c5e21654fa)
+- [h2c (HTTP/2 平文) で通信してみた 【その1 〜 バックエンド(Go/Node.js/Python)サービス編】 #http2 - Qiita](https://qiita.com/ssc-ksaitou/items/a1afcd4433c5e21654fa)
