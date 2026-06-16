@@ -2,6 +2,16 @@
 [Xored PNG - AlpacaHack](https://alpacahack.com/daily/challenges/xored-png)
 ## Writeup
 
+---
+## TL;DR
+事前条件:
+- 鍵長16
+- PNGファイルの先頭16 byteは固定(`89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52`).
+
+`flag.png.xored`の先頭16 byteをこれに直す鍵を総当りして見つけ, 得られた鍵をもとに`flag.png.xored`を暗号化と同じ手順で復号すれば良い.
+
+---
+
 ```Python:chal.py
 import os
 
@@ -34,7 +44,7 @@ for i in range(len(png)):
 1. `assert len(key) == 16`から, key長は16であること
 2. `key[i % len(key)]`から, 配列`key`の値を1つずつずらしながら暗号化している. 終端のあとは最初に戻る.
 
->[!NOTE]
+>[!note] PNGのファイル構造
 > ## PNGファイルシグネチャ
 > 先頭8 byteにはPNGファイルシグネチャ(`89 50 4e 47 0d 0a 1a 0a`)が存在する.
 > ## 必須チャンク: IHDRチャンク
