@@ -44,7 +44,7 @@ for i in range(len(png)):
 1. `assert len(key) == 16`から, key長は16であること
 2. `key[i % len(key)]`から, 配列`key`の値を1つずつずらしながら暗号化している. 終端のあとは最初に戻る.
 
->[!note] PNGのファイル構造
+>[!note]
 > ## PNGファイルシグネチャ
 > 先頭8 byteにはPNGファイルシグネチャ(`89 50 4e 47 0d 0a 1a 0a`)が存在する.
 > ## 必須チャンク: IHDRチャンク
