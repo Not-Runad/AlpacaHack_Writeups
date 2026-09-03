@@ -82,7 +82,6 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd, void __user
 `solve.py`:
 ```python:solve.py
 from pwn import *
-import sys
 
 HOST = "34.170.146.252"
 PORT = 35059
