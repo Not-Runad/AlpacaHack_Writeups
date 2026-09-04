@@ -13,7 +13,7 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd, void __user
 ```C:kernel/reboot.c
 	/* For safety, we require "magic" arguments. */
 	if (magic1 != LINUX_REBOOT_MAGIC1 ||
-			(magic2 != LINUX_REBOOT_MAGIC1 &&
+			(magic2 != LINUX_REBOOT_MAGIC2 &&
 			magic2 != LINUX_REBOOT_MAGIC2A &&
 			magic2 != LINUX_REBOOT_MAGIC2B &&
 			magic2 != LINUX_REBOOT_MAGIC2C))
@@ -21,7 +21,7 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd, void __user
 
 ```
 
-- `magic1`, `magic2`は特定の数値(`LINUX_REBOOT_MAGIC1`, `LINUX_REBOOT_MAGIC2A`, `LINUX_REBOOT_MAGIC2B`, `LINUX_REBOOT_MAGIC2C`)に一致している必要がある.
+- `magic1`, `magic2`は特定の数値(`LINUX_REBOOT_MAGIC1`, `LINUX_REBOOT_MAGIC2`, `LINUX_REBOOT_MAGIC2A`, `LINUX_REBOOT_MAGIC2B`, `LINUX_REBOOT_MAGIC2C`)に一致している必要がある.
 
 [include/uapi/linux/reboot.h](https://github.com/torvalds/linux/blob/940de590b839f71d6dc846160534bf202401b8b7/include/uapi/linux/reboot.h):
 ```C:include/uapi/linux/reboot.h
