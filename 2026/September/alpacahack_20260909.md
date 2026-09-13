@@ -1,4 +1,4 @@
-# ■ # ＼^o^／
+# ■ ＼^o^／
 [＼^o^／ - AlpacaHack](https://alpacahack.com/daily/challenges/no-parentheses)
 
 ## 1. Writeup
