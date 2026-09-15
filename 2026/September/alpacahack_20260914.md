@@ -3,7 +3,7 @@
 
 ## 1. Writeup
 
-`chal.c:`
+`chal.c`:
 ```c:chal.c
  1 // gcc -o chal chal.c
  2 #include <stdio.h>
@@ -29,7 +29,7 @@
 22 }
 ```
 
-`server.py:`
+`server.py`:
 ```python:server.py
 1 import subprocess
 2
@@ -49,7 +49,7 @@
 
 つまり, オーバーフローを発生させれば良い. int型の最小値( `-2147483648`, `-0x80000000` )を `-1` で除算することでオーバーフローを発生させられる.
 
-`solve.py:`
+`solve.py`:
 ```python:solve.py
  1 from pwn import *
  2
