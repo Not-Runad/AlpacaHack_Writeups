@@ -3,7 +3,7 @@
 
 ## 1. Writeup
 
-`main.c#L16-L28`:
+`main.c#L16-L38`:
 ```C
 16	void win() {
 17	    execve("/bin/sh", NULL, NULL);
