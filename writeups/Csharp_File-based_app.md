@@ -51,7 +51,7 @@
 26	    return temp2[..bytesWritten2].SequenceEqual(temp3[..bytesWritten3]);
 ```
 
-`temp2` と `input`(`temp3`) を比較.
+復元されたフラグ文字列 `temp2` と `input`(`temp3`) を比較.
 
 ## 1.4. 回答
 
