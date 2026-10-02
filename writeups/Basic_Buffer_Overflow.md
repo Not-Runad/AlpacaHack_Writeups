@@ -81,6 +81,7 @@ gef➤  pattern search 0x616161616161616a
 `solve.py`:
 ```python
 from pwn import *
+import re
 
 _, HOST, PORT = 'nc localhost 9999'.split()
 io = remote(HOST, PORT)
