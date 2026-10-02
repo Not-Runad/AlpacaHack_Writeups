@@ -70,7 +70,7 @@ gef➤  pattern search 0x616161616161616a
 [+] Found at offset 72 (little-endian search) likely
 ```
 
-`buf` から `main` のリターンアドレスまで72bytesだとわかる.
+`buffer` から `main` のリターンアドレスまで72bytesだとわかる.
 
 ## 1.3. 方針, 回答
 
