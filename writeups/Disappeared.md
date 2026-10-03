@@ -97,7 +97,8 @@ gef➤  x/60gx $rsp
 gef➤  p/u (0x7fffffffdd58 - 0x7fffffffdbb0)/4
 $6 = 106
 ```
-- 4で割っているのは, `num` の型 `unsigned` が4byteであるため, 1要素あたりのoffsetに変換するため.
+> [!note]
+> 4で割っているのは, `num` の型 `unsigned` が4byteであり, 1要素あたりのoffsetに変換するため.
 
 ## 1.3. 回答
 `num` から `safe` リターンアドレスまでのoffsetがわかったので, `num[106]`(=`safe`retaddr)に `win` アドレスを入れることで `safe` からのリターン時に `win` をcallできる.
