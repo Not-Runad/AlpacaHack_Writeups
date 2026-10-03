@@ -64,7 +64,7 @@ Dump of assembler code for function main:
 `pos` に `0`, `val`(`num[pos=0]`) に任意のパターンを入れ, パターンからリターンアドレス(`0x4012d5 <main+73>`)へのoffsetを求められる.
 
 手順例:
-1. `<*safe+145>`(2回目の `scanf` のあと)にbreakpointを張る.
+1. `<safe+145>`(2回目の `scanf` のあと)にbreakpointを張る.
 2. `pos` に `0` を入力.
 3. `val`(`num[0]`) に `3735928559(0xdeadbeef)` を入力.
 4. breakpointに止まるので, `0xdeadbeef` があるアドレスから `0x4012d5 <main+73>` へのoffsetを計算する.
