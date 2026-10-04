@@ -32,14 +32,35 @@
 ```
 
 ## 1.1. 素数$p$
-$$n_1 = pq_1$$$$n_2 = pq_2$$より, $$\text{gcd}(n_1,n_2) = \text{gcd}(pq_1,pq_2) = p$$が成り立つ. なぜなら, $$\text{gcd}(pq_1,pq_2) = p\cdot\text{gcd}(q_1,q_2)$$ここで, $q_1$と$q_2$は互いに素な素数( $\because n_1\neq n_2$ )より $\text{gcd}(q_1,q_2)$. したがって$$p\cdot\text{gcd}(q_1,q_2) = p\cdot 1=p$$
+$n_1 = pq_1$, $n_2 = pq_2$ より,
+
+$$\text{gcd}(n_1,n_2) = \text{gcd}(pq_1,pq_2) = p$$
+
+が成り立つ. なぜなら,
+
+$$\text{gcd}(pq_1,pq_2) = p \cdot \text{gcd}(q_1,q_2)$$
+
+ここで, $q_1$ と $q_2$ は互いに素な素数( $\because n_1\neq n_2$ )より $\text{gcd}(q_1,q_2)$. したがって
+
+$$p \cdot \text{gcd}(q_1,q_2) = p \cdot 1=p$$
 
 ## 1.2. $q_k$
-$p$がわかったので, $q_k$がわかる.$$p\cdot q_k = n_k\iff q_k = n_k \div p$$
+$p$ がわかったので, $q_k$ がわかる.
+
+$$p \cdot q_k = n_k \iff q_k = n_k \div p$$
 
 ## 1.3. RSAに基づいて復号
-$$\phi(n_k) = (p - 1)(q_k - 1)$$より秘密鍵$d_k$は$$d_k = e^{-1}\mod\phi(n_k)$$
-したがって平文$m$は$$m=c_{k}^{d_{k}}\mod n_k$$で求まる.
+$$\phi(n_k) = (p - 1)(q_k - 1)$$
+
+より秘密鍵 $d_k$ は
+
+$$d_k = e^{-1}\mod\phi(n_k)$$
+
+したがって平文 $m$ は
+
+$$m=c_{k}^{d_{k}}\mod n_k$$
+
+で求まる.
 
 ## 1.4. 回答
 以上の考察をスクリプトに落とし込む.
