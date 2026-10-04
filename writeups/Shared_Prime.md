@@ -40,7 +40,7 @@ $$\text{gcd}(n_1,n_2) = \text{gcd}(pq_1,pq_2) = p$$
 
 $$\text{gcd}(pq_1,pq_2) = p \cdot \text{gcd}(q_1,q_2)$$
 
-ここで, $q_1$ と $q_2$ は互いに素な素数( $\because n_1\neq n_2$ )より $\text{gcd}(q_1,q_2)$. したがって
+ここで, $q_1$ と $q_2$ は互いに素な素数( $\because n_1\neq n_2$ )より $\text{gcd}(q_1,q_2) = 1$. したがって
 
 $$p \cdot \text{gcd}(q_1,q_2) = p \cdot 1=p$$
 
