@@ -4,7 +4,7 @@
 # 1. Solution
 
 - `pos` に対しての負の値のチェックがされていない.
-- RELROが `Partial RELRO` となっており, `got.plt` を書き換え可能.
+- RELROが `Partial RELRO` となっており, `.got.plt` を書き換え可能.
 - `puts()` 内で文字列 `'/bin/sh'` が存在している.
 
 これらを組み合わせて, GOT Overwriteにより `puts@got` を `system@plt` に書き換え, `/bin/sh` を実行させる.
