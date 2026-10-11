@@ -9,7 +9,7 @@
 
 これらを組み合わせて, GOT Overwriteにより `puts@got` を `system@plt` に書き換え, `/bin/sh` を実行させる.
 
-- `solve.py:
+- `solve.py`:
 ```python
 from pwn import *
 import re
