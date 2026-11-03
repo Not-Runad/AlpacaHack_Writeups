@@ -126,7 +126,7 @@ item[index] = *(unsigned long *)(0 + 8 * index)
 
 ## 2.3. flag文字列の取得
 
-$$\text{index} = \left\lfloor \frac{\text{flag\_addr}}{8} \right\rfloor$$
+$$\text{index} = \left\lfloor \frac{\text{flag\-addr}}{8} \right\rfloor$$
 
 を指定すればflag文字列の先頭付近を読み出せる. 8byte境界に揃っていない場合, `flag_addr % 8` 分のズレが生じる.
 
