@@ -39,36 +39,57 @@ Offset      Size       内容
 ──────────────────────────────────────
 ```
 
+`buf_1::data` から `buf_2::size` までのオフセットは `buf_1::data(16 bytes) + buf_2::prev_size(8 bytes) = 24 bytes`.
+
 ## 2.2. AMPフラグ
 チャンクサイズ `size` は8-byteにアラインメントされるため, 下位3ビットがそれぞれAMPフラグとして使用される.
 
-> ref: [CTF-WriteUps/AlpacaHack/2026Jun/what-is-my-size.md - goroshirow/CTF-WriteUps](https://github.com/goroshirow/CTF-WriteUps/blob/main/AlpacaHack/2026Jun/what-is-my-size.md)
 ```
-63                                                            3   2   1   0  (ビット位置)
-+-------------------------------------------------------------+---+---+---+
-|                      size (61 bits)                         | A | M | P |
-+-------------------------------------------------------------+---+---+---+
+63               3   2   1   0
++----------------+---+---+---+
+| size (61 bits) | A | M | P |
++----------------+---+---+---+
 ```
 
 ## 2.3. `malloc_usable_size()`
-`malloc_usable_size()` は Mフラグによって計算方式が変わる.
+`malloc_usable_size()` は `M` フラグによって計算方式が変わる. また, `malloc_usable_size()` は `musable()` を経由してサイズを算出する.
 
 ### 2.3.1. M=0 (通常のarenaチャンク)
+`musable()` は `inuse(p)` を呼び出す.
 
-```
-usable_size = chunksize(p) - CHUNK_HDR_SZ + SIZE_SZ;
-```
+```C
+#define inuse(p) ((((mchunkptr)(((char *)(p) + chunksize(p)))->mchunk_size)) & PREV_INUSE)
 
-x64の一般的なGLIBCでは
-- `CHUNK_HDR_SZ = 0x10 (16 bytes)`
-- `SIZE_SZ = 0x08 (8 bytes)`
-なので,
-
-```
-usable_size = chunksize(p) - 0x10 + 0x08
- <=>
-usable_size = chunksize(p) - 0x08
+else if (inuse(p))
+    return memsize(p);
 ```
 
-となる.
 
+これは対象チャンク `p` の次のチャンクの `mchunk_size` に含まれる `PREV_INUSE` ビットを参照する.
+
+次のチャンク `PREV_INUSE` が1であれば対象チャンク `p` は使用中と判断され, サイズを返す. 計算式は `chunksize - 8`.
+
+次のチャンク `PREV_INUSE` が0であれば対象チャンク `p` はfree状態と判断され, `malloc_usable_size()` は `0` を返す.
+
+### 2.3.2. M=1 (mmapチャンク)
+`musable()` は `inuse(p)` によるチェックを行わず, 直接 `memsize(p)` を呼び出す.
+
+```C
+# define CHUNK_HDR_SZ (2 * SIZE_SZ)
+
+	if (chunk_is_mmapped(p))
+		return chunksize(p) - CHUNK_HDR_SZ;
+```
+
+計算式は `chunksize - 2 * 8`.
+
+### 2.3.3. 今回の場合
+`M = 1` として直接 `memsize(p)` を呼び出すようにすることで, 任意のサイズを得られる.
+
+目標とする戻り値は `0x100` なので, 必要なチャンクサイズは
+
+$$
+\text{chunksize} - 2 \times 8 = \text{0x100} \iff \text{chunksize} = \text{0x110}
+$$
+
+ここに `M` フラグ( `0x2` )と `P` フラグ( `0x1` )を加算するので, `buf_2::size` へ書き込む値は `0x113`.
