@@ -1,6 +1,6 @@
 # ■ Writeup::Welcome
 [Welcome - AlpacaHack](https://alpacahack.com/challenges/welcome)
 
-# 1. Solution
+# 1. Abstract
 
 # 2. Explanation
